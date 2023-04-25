@@ -36,6 +36,16 @@ class Etudiant:
         with open(p_fichier, "w") as fichier :
             json.dump(self.__dict__, fichier)
 
+    def deserialiser(self, p_fichier):
+        with open(p_fichier, "r") as fichier :
+            self.__dict__ = json.load(fichier)
+
+
+
+
+
+
+
 #    def get_date_naiss(self):
  #       """
   #      Accesseur de l'attribut privé _date_naiss
