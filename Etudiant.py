@@ -1,3 +1,6 @@
+import json
+
+
 class Etudiant:
     """
     Classe Etudiant
@@ -51,6 +54,27 @@ class Etudiant:
         import datetime
         today = datetime.date.today()
         return today.year - p_date_naiss.year() - ((today.month, today.day) < (p_date_naiss.month(), p_date_naiss.day()))
+
+    def serialiser_etudiant(self, p_fichier):
+
+        try:
+            with open(p_fichier, "w") as fichier:
+                try:
+                    json.dump(self.__dict__, fichier)
+                    return 0
+                except:
+                    return 1
+        except:
+            return 2
+
+
+
+
+
+
+
+
+
 
     def __str__(self):
      chaine = "Numero d'étudiant : " + self._numero + "\n" +\

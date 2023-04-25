@@ -7,7 +7,7 @@ class Local_Technique(M.Local):
     """
     def __init__(self, p_type_local : str = "", p_num_local : str = "", p_lieu_local : str = "",
                  p_dimension_local: float = 0.0, p_nbr_places: int = 0, p_marque_ordi : str = "",
-                 p_nb_ordi : int = 0, p_projecteur = True):
+                 p_nb_ordi : int = 0, p_projecteur = None):
         """
         :param p_type_local:
         :param p_num_local:
