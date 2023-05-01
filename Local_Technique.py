@@ -21,7 +21,7 @@ class Local_Technique(M.Local):
         M.Local.__init__(self, p_type_local, p_num_local, p_lieu_local, p_dimension_local, p_nbr_places)
         self._marque_ordi = p_marque_ordi
         self._nb_ordi = p_nb_ordi
-        self._projecteur = p_projecteur
+        self.projecteur = p_projecteur
 
     def get_marque_ordi(self):
         return self._marque_ordi

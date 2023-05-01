@@ -15,7 +15,6 @@ from PyQt5 import QtWidgets
 
 from PyQt5.QtCore import pyqtSlot, QDate
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-
 list_etudiant = []
 
 def verifier_num_etudiant(p_numero):
@@ -41,6 +40,7 @@ class demoQt(QtWidgets.QMainWindow, interface_graphique_etudiant.Ui_MainWindow):
         self.setupUi(self) # Préparer l'interface utilisateur
         self.setWindowTitle("Gestion de scolarité") # Titre de la page
         cacher_labels_erreur(self)
+        self.comboBox_Programme.setCurrentIndex(-1)
 
 
     # Gestionnaire d'événement, Lorsqu'on clique sur le boutton
@@ -50,6 +50,7 @@ class demoQt(QtWidgets.QMainWindow, interface_graphique_etudiant.Ui_MainWindow):
         Gestionnaire d'événement du bouton valider.
         """
         cacher_labels_erreur(self)
+        self.comboBox_Programme.setCurrentIndex(-1)
 
         etud = Etudiant()
 
