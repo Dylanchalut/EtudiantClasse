@@ -55,8 +55,19 @@ class Etudiant:
         today = datetime.date.today()
         return today.year - p_date_naiss.year() - ((today.month, today.day) < (p_date_naiss.month(), p_date_naiss.day()))
 
-    def serialiser_etudiant(self, p_fichier):
 
+
+
+
+    def serialiser_etudiant(self, p_fichier):
+        """
+        Métode de serialiser un objet de la classe Etudiant
+        :param p_fichier: Le nom du fichier qui contiendra l'objet serialsier
+        :return: retourne 0 si le fichier est ouvert et les informations y sont écrites,
+        1 s'il y a erreur d'écriture et 2 s'il y a erreur ouverture
+        """
+        self.__dict__["_Etudiant__date_naiss"] = str(self.DateNaiss.year()) + "-" + \
+              str(self.DateNaiss.month()) + "-" + str(self.DateNaiss.day())
         try:
             with open(p_fichier, "w") as fichier:
                 try:

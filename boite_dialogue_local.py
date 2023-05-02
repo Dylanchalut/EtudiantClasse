@@ -7,6 +7,11 @@ import ajouter_local
 
 list_local = []
 
+def verifier_num_etudiant_local(p_num):
+    for elt in list_local:
+        if elt.Numero_Local == p_num:
+            return True
+    return False
 
 
 class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
@@ -49,37 +54,96 @@ class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
             self.cacher_label_technique(False)
             self.cacher_label_normal(True)
 
-    @pyqtSlot()
-    def on_Button_Ajouter_clicked(self):
-        self.cacher_label_erreur(False)
+    def GestionnerErreurLocal(self,p_type_l):
 
-        L = Local()
-        N = Local_Normal()
-        T = Local_Technique()
+        if p_type_l == "Technique":
+            L = Local_Technique()
+        else :
+            L = Local_Normal()
 
         L.Type_Local = self.comboBox_type_local.currentText()
         L.Numero_Local = self.lineEdit_num_local.text().capitalize()
         L.Lieu_Local = self.comboBox_lieu_local.currentText()
-        L.Dimension_Local = self.lineEdit_dimension.text()
-        L.Nbr_PLaces = self.lineEdit_nb_places.text()
+        try:
+            L.Dimension_Local = int(self.lineEdit_dimension.text())
+        except:
+            self.label_erreur_dimension.setVisible(True)
 
-        N.Nb_places_tables = self.lineEdit_nb_places_table.text()
+        try:
+            L.Nbr_PLaces = int(self.lineEdit_nb_places.text())
+        except:
+            self.label_erreur_nb_place.setVisible(True)
 
-        T.Marque_ordi = self.lineEdit_marque_ordi.text()
-        T.Nb_ordi = self.lineEdit_nb_ordi.text()
-        T.projecteur = self.comboBox_projecteur.currentText()
 
-        if L.Numero_Local == "":
+        verifier_num_local = verifier_num_etudiant_local(self.lineEdit_num_local.text().capitalize())
+
+        if verifier_num_local is True and L.Numero_Local == "":
             self.lineEdit_num_local.clear()
             self.label_erreur_num_local.setVisible(True)
 
-        if L.Dimension_Local == "":
+        if L.Dimension_Local == 0.0:
             self.lineEdit_dimension.clear()
             self.label_erreur_dimension.setVisible(True)
 
-        if L.Nbr_PLaces == "":
+        if L.Nbr_PLaces == 0:
             self.lineEdit_nb_places.clear()
             self.label_erreur_nb_place.setVisible(True)
+
+        if verifier_num_local is False and L.Numero_Local != "" and L.Dimension_Local != 0.0 and L.Nbr_PLaces != 0:
+            list_local.append(L)
+            self.lineEdit_num_local.clear()
+            self.lineEdit_dimension.clear()
+            self.lineEdit_nb_places.clear()
+
+
+    @pyqtSlot()
+    def on_Button_Ajouter_clicked(self):
+        self.cacher_label_erreur(False)
+
+        L = Local_Normal()
+        L = Local_Technique()
+        self.GestionnerErreurLocal(self.comboBox_type_local.currentText())
+
+        if self.comboBox_type_local.currentText() == "Technique":
+
+            L.Marque_ordi = self.lineEdit_marque_ordi.text()
+            try:
+                L.Nb_ordi = int(self.lineEdit_nb_ordi.text())
+            except:
+                self.label_erreur_nb_ordi_2.setVisible(True)
+
+
+            L.projecteur = self.comboBox_projecteur.currentText()
+
+
+            if L.Marque_ordi == "":
+                self.lineEdit_marque_ordi.clear()
+                self.label_erreur_marque_ordi.setVisible(True)
+
+            if L.Nb_ordi == 0:
+                self.lineEdit_nb_ordi.clear()
+                self.label_erreur_nb_ordi_2.setVisible(True)
+
+            if L.Marque_ordi != "" and L.Nb_ordi != 0 and self.GestionnerErreurLocal():
+                list_local.append(L)
+                self.lineEdit_marque_ordi.clear()
+                self.lineEdit_nb_ordi.clear()
+
+        else:
+            try:
+                L.Nb_places_tables = self.lineEdit_nb_places_table.text()
+            except:
+                self.label_erreur_nb_places_table.setVisible(True)
+
+
+            if L.Nb_places_tables == 0:
+                self.lineEdit_nb_places_table.clear()
+                self.label_erreur_nb_places_table.setVisible(True)
+
+            if L.Nb_places_tables != 0 and self.GestionnerErreurLocal():
+                list_local.append(L)
+                self.lineEdit_nb_places_table.clear()
+
 
 
 

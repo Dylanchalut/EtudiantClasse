@@ -27,12 +27,12 @@ class Local_Technique(M.Local):
         return self._marque_ordi
     def set_marque_ordi(self, v_marque):
         if len(v_marque) > 100:
-            self._num_local = v_marque
+            self._marque_ordi = v_marque
     Marque_ordi = property(get_marque_ordi, set_marque_ordi)
 
     def get_nb_ordinateur(self):
         return self._nb_ordi
     def set_nb_ordinateur(self, v_nb_ordi):
         if v_nb_ordi > 0 and v_nb_ordi < 25:
-            self._num_local = v_nb_ordi
+            self._nb_ordi = v_nb_ordi
     Nb_ordi = property(get_nb_ordinateur, set_nb_ordinateur)
