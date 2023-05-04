@@ -26,7 +26,7 @@ class Local_Technique(M.Local):
     def get_marque_ordi(self):
         return self._marque_ordi
     def set_marque_ordi(self, v_marque):
-        if len(v_marque) > 100:
+        if len(v_marque) < 100:
             self._marque_ordi = v_marque
     Marque_ordi = property(get_marque_ordi, set_marque_ordi)
 

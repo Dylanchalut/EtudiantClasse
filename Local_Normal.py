@@ -21,6 +21,6 @@ class Local_Normal(M.Local):
     def get_nb_places_tables(self):
         return self._nb_places_tables
     def set_nb_places_tables(self, v_places_tables):
-        if v_places_tables.isnumeric and v_places_tables == 1 or v_places_tables == 2:
+        if v_places_tables.isnumeric() and v_places_tables == 1 or v_places_tables == 2:
             self._nb_places_tables = v_places_tables
     Nb_places_tables = property(get_nb_places_tables, set_nb_places_tables)

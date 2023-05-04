@@ -102,7 +102,7 @@ class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
 
         L = Local_Normal()
         L = Local_Technique()
-        self.GestionnerErreurLocal(self.comboBox_type_local.currentText())
+        L.type_local = self.GestionnerErreurLocal(self.comboBox_type_local.currentText())
 
         if self.comboBox_type_local.currentText() == "Technique":
 
@@ -124,14 +124,14 @@ class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
                 self.lineEdit_nb_ordi.clear()
                 self.label_erreur_nb_ordi_2.setVisible(True)
 
-            if L.Marque_ordi != "" and L.Nb_ordi != 0 and self.GestionnerErreurLocal():
+            if L.Marque_ordi != "" and L.Nb_ordi != 0 and self.GestionnerErreurLocal(self.comboBox_type_local.currentText()):
                 list_local.append(L)
                 self.lineEdit_marque_ordi.clear()
                 self.lineEdit_nb_ordi.clear()
 
         else:
             try:
-                L.Nb_places_tables = self.lineEdit_nb_places_table.text()
+                L.Nb_places_tables = int(self.lineEdit_nb_places_table.text())
             except:
                 self.label_erreur_nb_places_table.setVisible(True)
 
