@@ -19,27 +19,27 @@ class Etudiant:
         self._date_naiss = p_date_naiss
 
 
-    def get_numero(self):
+    def _get_numero(self):
         return self._numero
-    def set_numero(self, v_numero):
-        if len(v_numero) == 7 and v_numero.isnumeric:
+    def _set_numero(self, v_numero):
+        if len(v_numero) == 7 and v_numero.isnumeric():
             self._numero = v_numero
-    Matricule = property(get_numero, set_numero)
+    Matricule = property(_get_numero, _set_numero)
 
-    def get_nom(self):
+    def _get_nom(self):
         return self._nom
-    def set_nom(self, v_nom):
+    def _set_nom(self, v_nom):
         if len(v_nom) <= 25 and v_nom.isalpha():
             self._nom = v_nom
-    NomEtud = property(get_nom, set_nom)
+    NomEtud = property(_get_nom, _set_nom)
 
-    def get_date_naiss(self):
+    def _get_date_naiss(self):
         """
         Accesseur de l'attribut privé _date_naiss
         :return: attitude _date_naiss
         """
         return self._date_naiss
-    def set_date_naiss(self, p_date_naiss):
+    def _set_date_naiss(self, p_date_naiss):
         """
         Mutateur de l'attribut privé _date_naiss
         :param v_date_naiss:
@@ -48,7 +48,7 @@ class Etudiant:
         if self.age(p_date_naiss) >= 18:
             self._date_naiss = p_date_naiss
 
-    DateNaiss = property(get_date_naiss, set_date_naiss)
+    DateNaiss = property(_get_date_naiss, _set_date_naiss)
 
     def age(self, p_date_naiss):
         import datetime

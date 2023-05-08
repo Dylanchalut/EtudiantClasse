@@ -74,10 +74,13 @@ class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
         except:
             self.label_erreur_nb_place.setVisible(True)
 
-
         verifier_num_local = verifier_num_etudiant_local(self.lineEdit_num_local.text().capitalize())
 
-        if L.Numero_Local == "" and verifier_num_local is True:
+        if L.Numero_Local != "" and verifier_num_local is True:
+            self.lineEdit_num_local.clear()
+            self.label_erreur_num_local.setVisible(True)
+
+        if L.Numero_Local == "":
             self.lineEdit_num_local.clear()
             self.label_erreur_num_local.setVisible(True)
 
@@ -90,7 +93,6 @@ class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
             self.label_erreur_nb_place.setVisible(True)
 
         if L.Numero_Local != "" and L.Dimension_Local != 0.0 and L.Nbr_PLaces != 0 and verifier_num_local is False:
-            list_local.append(L)
             self.lineEdit_num_local.clear()
             self.lineEdit_dimension.clear()
             self.lineEdit_nb_places.clear()
@@ -103,7 +105,7 @@ class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
         if self.comboBox_type_local.currentText() == "Technique":
             L = Local_Technique()
 
-            L.type_local = self.GestionnerErreurLocal(self.comboBox_type_local.currentText())
+            self.GestionnerErreurLocal(self.comboBox_type_local.currentText())
 
             L.Marque_ordi = self.lineEdit_marque_ordi.text()
             try:
@@ -111,9 +113,7 @@ class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
             except:
                 self.label_erreur_nb_ordi_2.setVisible(True)
 
-
             L.projecteur = self.comboBox_projecteur.currentText()
-
 
             if L.Marque_ordi == "":
                 self.lineEdit_marque_ordi.clear()
@@ -134,7 +134,6 @@ class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
                 L.Nb_places_tables = int(self.lineEdit_nb_places_table.text())
             except:
                 self.label_erreur_nb_places_table.setVisible(True)
-
 
             if L.Nb_places_tables == 0:
                 self.lineEdit_nb_places_table.clear()

@@ -17,23 +17,23 @@ class Local:
         self._dimension_local = p_dimension_local
         self._nbr_places = p_nbr_places
 
-    def get_num_local(self):
+    def _get_num_local(self):
         return self._num_local
-    def set_num_local(self, v_numero):
+    def _set_num_local(self, v_numero):
         if len(v_numero) == 5 and v_numero[0].isalpha() and v_numero[1] == "-" and v_numero[2:5].isnumeric():
             self._num_local = v_numero
-    Numero_Local = property(get_num_local, set_num_local)
+    Numero_Local = property(_get_num_local, _set_num_local)
 
-    def get_dimension_local(self):
+    def _get_dimension_local(self):
         return self._dimension_local
-    def set_dimension_local(self, v_dimension):
+    def _set_dimension_local(self, v_dimension):
         if v_dimension > 0:                                                            #and v_dimension.isnumeric()
             self._dimension_local = v_dimension
-    Dimension_Local = property(get_dimension_local, set_dimension_local)
+    Dimension_Local = property(_get_dimension_local, _set_dimension_local)
 
-    def get_nbr_places(self):
+    def _get_nbr_places(self):
         return self._nbr_places
-    def set_nbr_places(self, v_places):
+    def _set_nbr_places(self, v_places):
         if v_places > 0 and v_places < 25:                                            #and v_places.isnumeric()
             self._nbr_places = v_places
-    Nbr_PLaces = property(get_nbr_places, set_nbr_places)
+    Nbr_PLaces = property(_get_nbr_places, _set_nbr_places)
