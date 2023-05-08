@@ -77,7 +77,7 @@ class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
 
         verifier_num_local = verifier_num_etudiant_local(self.lineEdit_num_local.text().capitalize())
 
-        if verifier_num_local is True and L.Numero_Local == "":
+        if L.Numero_Local == "" and verifier_num_local is True:
             self.lineEdit_num_local.clear()
             self.label_erreur_num_local.setVisible(True)
 
@@ -89,7 +89,7 @@ class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
             self.lineEdit_nb_places.clear()
             self.label_erreur_nb_place.setVisible(True)
 
-        if verifier_num_local is False and L.Numero_Local != "" and L.Dimension_Local != 0.0 and L.Nbr_PLaces != 0:
+        if L.Numero_Local != "" and L.Dimension_Local != 0.0 and L.Nbr_PLaces != 0 and verifier_num_local is False:
             list_local.append(L)
             self.lineEdit_num_local.clear()
             self.lineEdit_dimension.clear()
@@ -100,11 +100,10 @@ class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
     def on_Button_Ajouter_clicked(self):
         self.cacher_label_erreur(False)
 
-        L = Local_Normal()
-        L = Local_Technique()
-        L.type_local = self.GestionnerErreurLocal(self.comboBox_type_local.currentText())
-
         if self.comboBox_type_local.currentText() == "Technique":
+            L = Local_Technique()
+
+            L.type_local = self.GestionnerErreurLocal(self.comboBox_type_local.currentText())
 
             L.Marque_ordi = self.lineEdit_marque_ordi.text()
             try:
@@ -130,6 +129,7 @@ class Fenetrelistview_local(QtWidgets.QDialog, ajouter_local.Ui_Dialog):
                 self.lineEdit_nb_ordi.clear()
 
         else:
+            L = Local_Normal()
             try:
                 L.Nb_places_tables = int(self.lineEdit_nb_places_table.text())
             except:
