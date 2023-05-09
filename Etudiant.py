@@ -1,5 +1,6 @@
 import json
 
+list_etudiant = []
 
 class Etudiant:
     """

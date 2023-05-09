@@ -15,7 +15,7 @@ from PyQt5 import QtWidgets
 
 from PyQt5.QtCore import pyqtSlot, QDate
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-list_etudiant = []
+#list_etudiant = []
 
 def verifier_num_etudiant(p_numero):
     for elt in list_etudiant:

@@ -4,11 +4,11 @@ class Cours:
     """
     Classe Cours
     """
-    def __init__(self, p_sigle_cours: str ="", p_titre_cours: str ="", p_nombres_heures_cours: int =0, p_etudiant: Etudiant = Etudiant()):
+    def __init__(self, p_sigle_cours: str ="", p_titre_cours: str ="", p_nombres_heures_cours: int =0, p_list_etudiant : list = []):
         self._sigle_cours = p_sigle_cours
         self._titre_cours = p_titre_cours
         self._nombre_heures_cours = p_nombres_heures_cours
-        self.Etudiant = p_etudiant
+        self.List_etudiant = p_list_etudiant
 
     def _get_sigle_cours(self):
         return self._sigle_cours
